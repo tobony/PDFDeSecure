@@ -24,8 +24,27 @@ An easy-to-use PDF Unlocker. Remove copy-protection from PDF files.
 
 ## Build ##
 
-* Use Visual Studio 2017<br>
+* Use Visual Studio 2017+<br>
 * Open application's solution file (PDFDeSecure.sln)<br>
+
+### CLI build (Windows)
+
+```powershell
+nuget restore PDFDeSecure.sln
+msbuild PDFDeSecure.sln /t:Build /p:Configuration=Release
+```
+
+### If `msbuild` is not found
+
+`PDFDeSecure` is a .NET Framework WinForms app, so Linux/macOS shells usually do not include MSBuild by default.
+Use one of these test methods:
+
+1. **GitHub Actions (recommended in non-Windows dev environments)**
+   * Push branch and let `.github/workflows/build-windows.yml` run on `windows-latest`.
+2. **Local Windows machine / Visual Studio Developer Command Prompt**
+   * Run `nuget restore` then `msbuild` commands above.
+3. **AppVeyor / other Windows CI**
+   * Keep the same two commands in the CI pipeline.
 
 ## Author ##
 

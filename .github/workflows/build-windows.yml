@@ -1,0 +1,18 @@
+name: build-windows
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+      - name: Restore NuGet packages
+        run: nuget restore PDFDeSecure.sln
+      - name: Build solution
+        run: msbuild PDFDeSecure.sln /t:Build /p:Configuration=Release
